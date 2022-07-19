@@ -3,6 +3,8 @@ kind: PipelineRun
 metadata:
   generateName: react-pipelinerun
   namespace: {{ .Values.global.ciNamespace }}
+  annotations:
+    argoproj.argocd.io/sync-hook: PostSync
 spec:
   params: 
     - name: "github-repo-revision"
