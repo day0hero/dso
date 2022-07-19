@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops
+  pattern: devsecops
 
   options:
     useCSV: false
@@ -9,3 +9,28 @@ global:
 
 main:
   clusterGroupName: hub
+
+#########
+#.Values.global.<key>
+  imageregistry:
+    account: PLAINTEXT
+    hostname: quay.io
+    type: quay
+
+  git:
+    hostname: github.com
+    account: PLAINTEXT
+    username: PLAINTEXT
+    email: SOMEWHERE@EXAMPLE.COM
+    dev_revision: main
+  
+  signing:
+    key: PLAINTEXT
+    
+#.Values.devel.<key>
+devel:
+  appURL: https://github.com/ipbabble/chat-client.git
+  image: quay.io/ipbabble/chat-client:latest
+  npmbase: quay.io/hybridcloudpatterns/ubi-npm:latest
+  roxctlImage: registry.redhat.io/rh-acs/roxctl:3.0.62.0
+
