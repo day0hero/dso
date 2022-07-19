@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   generateName: react-scan-pipelinerun
+  namespace: {{ .Values.global.ciNamespace }}
 spec:
   params: 
     - name: "github-repo-revision"
@@ -15,15 +16,12 @@ spec:
     - name: "is-name"
       value: "chat-client"
     - name: "acs-image"
-      value: {{ .Values.devel.image }}
+      value: {{ .Values.devel.roxctlImage }}
     - name: "acs-scan-api"
       value: "https://central-stackrox.{{ .Values.global.hubClusterDomain }}"
   pipelineRef:
     name: build-scan-and-deploy
   podTemplate:
-      securityContext:
-        runAsUser: 0
-        fsGroup: 0
       volumes:
         - name: varlibcontainers
           persistentVolumeClaim:
