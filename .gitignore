@@ -1,6 +1,7 @@
 *~
 *.swp
 *.swo
+*.vscode
 values-secret.yaml
 .*.expected.yaml
 pattern-vault.init
