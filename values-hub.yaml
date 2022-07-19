@@ -10,6 +10,7 @@ clusterGroup:
   - golang-external-secrets
   - rhacs-operator
   - devsecops-ci
+  - stackrox
 
   subscriptions:
     acs:
@@ -31,13 +32,13 @@ clusterGroup:
   applications:
     acs-central:
       name: acs-central
-      namespace: rhacs-operator
+      namespace: stackrox
       project: devsecops
       path: charts/all/acs/central
     
     acs-secure:
       name: acs-secured
-      namespace: rhacs-operator
+      namespace: stackrox
       project: devsecops
       path: charts/all/acs/secured
     
