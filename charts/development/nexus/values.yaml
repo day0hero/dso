@@ -1,0 +1,51 @@
+# Default values for nexus.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  cicd:
+    namespace: cicd
+
+replicaCount: 1
+
+containers:
+  image:
+    repository: quay.io/hybridcloudpatterns/nexus3:3.16.2
+    pullPolicy: IfNotPresent
+  port: 8081
+  protocol: TCP
+  env:
+    - name: CONTEXT_PATH
+      value: /
+  volumeMounts:
+    - mountPath: /nexus-data
+      name: nexus-data
+
+volumes:
+  name: nexus-data
+
+service:
+  port: 8081
+  protocol: TCP
+  targetPort: 8081
+  portName: 8081-tcp
+  type: ClusterIP
+
+route:
+  kind: Service
+  name: nexus
+  weight: 100
+
+resources:
+  limits:
+    cpu: '2'
+    memory: 4Gi
+  requests:
+    cpu: 200m
+    memory: 512Mi
+
+persistentVolumeClaim:
+  name: nexus-pv
+  accessModes: ReadWriteOnce
+  requests:
+    storage: 25Gi
