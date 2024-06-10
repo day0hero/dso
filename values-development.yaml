@@ -6,6 +6,7 @@ global:
 clusterGroup:
   name: development
   isHubCluster: false
+
   namespaces:
     - cicd
     - devsecops-dev
