@@ -5,6 +5,10 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
+    - quay-enterprise
+    - rhacs-operator
+    - stackrox
+    - openshift-storage
 
   subscriptions:
     acm:
@@ -13,12 +17,28 @@ clusterGroup:
       channel: release-2.10
       #csv: advanced-cluster-management.v2.6.1
 
+    acs:
+      name: rhacs-operator
+      namespace:  openshift-operators
+
+    odf:
+      name: odf-operator
+      namespace: openshift-storage
+
+    quay:
+      name: quay-operator
+      namespace: openshift-operators
+
   projects:
     - hub
+    - external-secrets
+    - opp
+
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
     - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
+    - '/overrides/values-{{ $.Values.global.clusterPlatform }}-{{ $.Values.global.clusterVersion }}.yaml'
   # sharedValueFiles is a flexible mechanism that will add the listed valuefiles to every app defined in the
   # applications section. We intend this to supplement and possibly even replace previous "magic" mechanisms, though
   # we do not at present have a target date for removal.
@@ -51,11 +71,48 @@ clusterGroup:
       namespace: vault
       project: hub
       path: common/hashicorp-vault
+
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
       project: hub
       path: common/golang-external-secrets
+
+    acs-central:
+      name: acs-central
+      namespace: stackrox
+      project: opp
+      path: charts/hub/acs/central
+
+    acs-secured:
+      name: acs-secured
+      namespace: stackrox
+      project: opp
+      path: charts/hub/acs/secured
+
+    openshift-storage:
+      name: storage
+      namespace: openshift-storage
+      project: opp
+      path: charts/hub/odf
+
+    quay-registry:
+      name: quay-registry
+      namespace: quay-enterprise
+      project: opp
+      path: charts/hub/quay
+
+    opp-policies:
+      name: opp-policies
+      namespace: openshift
+      project: opp
+      path: charts/hub/opp
+      ignoreDifferences:
+      - group: operators.openshift.io
+        kind: Console
+        jsonPointers:
+          - /spec/plugins
+
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
