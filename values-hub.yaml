@@ -98,7 +98,7 @@ clusterGroup:
       targetRevision: 0.1.0
       repoURL: https://charts.validatedpatterns.io/
       extraValuesFiles:
-        - /overrides/odf-values.yaml
+        - '/overrides/odf-values.yaml'
 
     quay-registry:
       name: quay-registry
