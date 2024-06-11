@@ -1,4 +1,3 @@
-storage:
-  storageSystem:
-    inventory:
-      useSpecificNodes: 'false'
+storageSystem:
+  inventory:
+    useSpecificNodes: 'false'
