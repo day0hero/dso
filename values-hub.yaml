@@ -97,7 +97,7 @@ clusterGroup:
       chart: openshift-data-foundations
       targetRevision: 0.1.0
       repoURL: https://charts.validatedpatterns.io/
-      extraValuesFiles:
+      extraValueFiles:
         - '/overrides/odf-values.yaml'
 
     quay-registry:
