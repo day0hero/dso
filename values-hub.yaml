@@ -78,40 +78,44 @@ clusterGroup:
       project: hub
       path: common/golang-external-secrets
 
-    acs-central:
-      name: acs-central
-      namespace: stackrox
-      project: opp
-      path: charts/hub/acs/central
-
-    acs-secured:
-      name: acs-secured
-      namespace: stackrox
-      project: opp
-      path: charts/hub/acs/secured
-
+#    acs-central:
+#      name: acs-central
+#      namespace: stackrox
+#      project: opp
+#      path: charts/hub/acs/central
+#
+#    acs-secured:
+#      name: acs-secured
+#      namespace: stackrox
+#      project: opp
+#      path: charts/hub/acs/secured
+#
     openshift-storage:
       name: storage
       namespace: openshift-storage
       project: opp
-      path: charts/hub/odf
+      chart: openshift-data-foundations
+      targetRevision: 0.1.0
+      repoURL: https://charts.validatedpatterns.io/
+      extraValuesFiles:
+        - /overrides/odf-values.yaml
 
     quay-registry:
       name: quay-registry
       namespace: quay-enterprise
       project: opp
-      path: charts/hub/quay
-
-    opp-policies:
-      name: opp-policies
-      namespace: openshift
-      project: opp
-      path: charts/hub/opp
-      ignoreDifferences:
-      - group: operators.openshift.io
-        kind: Console
-        jsonPointers:
-          - /spec/plugins
+      path: charts/all/quay
+#
+#    opp-policies:
+#      name: opp-policies
+#      namespace: openshift
+#      project: opp
+#      path: charts/hub/opp
+#      ignoreDifferences:
+#      - group: operators.openshift.io
+#        kind: Console
+#        jsonPointers:
+#          - /spec/plugins
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
