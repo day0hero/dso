@@ -1,4 +1,4 @@
-openshift-storage:
+storage:
   storageSystem:
     inventory:
       useSpecificNodes: 'false'
