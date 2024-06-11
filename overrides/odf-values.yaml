@@ -1,3 +1,6 @@
-storageSystem:
-  inventory:
-    useSpecificNodes: false
+clusterGroup:
+  applications:
+    storage:
+      storageSystem:
+        inventory:
+          useSpecificNodes: false
