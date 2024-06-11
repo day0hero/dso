@@ -1,11 +1,3 @@
-clusterGroup:
-  applications:
-    openshift-storage:
-      name: storage
-      namespace: openshift-storage
-      project: opp
-      chart: openshift-data-foundations
-      targetRevision: 0.1.0
-      repoURL: https://charts.validatedpatterns.io/
-      extraValueFiles:
-        - '/overrides/values-odf.yaml'
+storageSystem:
+  inventory:
+    useSpecificNodes: 'false'
