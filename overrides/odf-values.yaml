@@ -1,6 +1,6 @@
 clusterGroup:
   applications:
-    storage:
+    openshift-storage:
       storageSystem:
         inventory:
           useSpecificNodes: false
