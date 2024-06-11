@@ -39,7 +39,6 @@ clusterGroup:
   sharedValueFiles:
     - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
     - '/overrides/values-{{ $.Values.global.clusterPlatform }}-{{ $.Values.global.clusterVersion }}.yaml'
-    - '/overrides/values-odf.yaml'
   # sharedValueFiles is a flexible mechanism that will add the listed valuefiles to every app defined in the
   # applications section. We intend this to supplement and possibly even replace previous "magic" mechanisms, though
   # we do not at present have a target date for removal.
@@ -98,6 +97,8 @@ clusterGroup:
       chart: openshift-data-foundations
       targetRevision: 0.1.0
       repoURL: https://charts.validatedpatterns.io/
+      extraValueFiles:
+      - '/overrides/values-odf.yaml'
 
     quay-registry:
       name: quay-registry
