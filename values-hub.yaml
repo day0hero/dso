@@ -90,11 +90,11 @@ clusterGroup:
 #      project: opp
 #      path: charts/hub/acs/secured
 #
-#    openshift-storage:
-#      name: storage
-#      namespace: openshift-storage
-#      project: opp
-#      path: charts/hub/odf
+    openshift-storage:
+      name: storage
+      namespace: openshift-storage
+      project: opp
+      path: charts/hub/openshift-platform-plus/odf
 #
 #    quay-registry:
 #      name: quay-registry
