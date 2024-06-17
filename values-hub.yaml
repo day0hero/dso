@@ -9,6 +9,7 @@ clusterGroup:
     - rhacs-operator
     - stackrox
     - openshift-storage
+    - policies
 
   subscriptions:
     acm:
