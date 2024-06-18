@@ -96,13 +96,13 @@ clusterGroup:
       namespace: openshift-storage
       project: opp
       path: charts/hub/openshift-platform-plus/odf
-#
-#    quay-registry:
-#      name: quay-registry
-#      namespace: quay-enterprise
-#      project: opp
-#      path: charts/hub/quay
-#
+
+    quay-registry:
+      name: quay-registry
+      namespace: quay-enterprise
+      project: opp
+      path: charts/hub/openshift-platform-plus/quay
+
 #    opp-policies:
 #      name: opp-policies
 #      namespace: openshift
