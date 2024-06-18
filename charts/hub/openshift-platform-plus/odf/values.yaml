@@ -1,5 +1,5 @@
 cloudProvider:
-  storageClass: default-rwo
+  storageClass: gp3-csi
 
 ocs:
   namespace: openshift-storage
@@ -43,7 +43,7 @@ global:
     region: us-west-1
 
 clusterGroup:
-  storageClass: gp2
+  storageClass: gp3-csi
 
 #Define the odf storageSystem parameters
 storageSystem:
